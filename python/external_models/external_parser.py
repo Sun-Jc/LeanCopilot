@@ -9,7 +9,8 @@ def get_cuda_if_available():
 
 
 def pre_process_input(model_name, input):
-    if model_name == "internlm/internlm2-math-plus-1_8b":
+    if model_name == "internlm/internlm2-math-plus-1_8b" \
+        or 'goedel' in model_name.lower() or 'deepseek' in model_name.lower():
         prompt = (
             "My LEAN 4 state is:\n```lean\n"
             + input
@@ -34,7 +35,8 @@ def pre_process_input(model_name, input):
 
 
 def post_process_output(model_name, output):
-    if model_name == "internlm/internlm2-math-plus-1_8b":
+    if model_name == "internlm/internlm2-math-plus-1_8b" \
+        or 'goedel' in model_name.lower() or 'deepseek' in model_name.lower():
         result = (
             output.split("assistant")[-1]
             .split("lean")[-1]
